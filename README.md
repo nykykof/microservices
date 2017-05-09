@@ -25,4 +25,4 @@ Dans chaque projet se trouve un fichier `bootstrap.yml` sous le repertoire **src
 * le port sur lequel le service tourne
 * l'adresse à laquelle se trouve le config-server  
 
-Pour le projet "Word" le port n'est pas spécifié car un port aléatoire parmi les ports disponibles est attribué au lancement du service. Deux autres fichiers de configuration (application.yml et challenge.yml), servis par le config-server, sont hébergés sur <https://wwww.hithub.com/nykykof/ConfigData>. Ces fichiers contiennent entre autres, les listes de mot utilisées par le microservice Word. 
+Pour le projet "Word" le port n'est pas spécifié car un port aléatoire parmi les ports disponibles est attribué au lancement du service. Deux autres fichiers de configuration (application.yml et challenge.yml), servis par le config-server, sont hébergés sur <https://www.hithub.com/nykykof/ConfigData>. Ces fichiers contiennent entre autres, les listes de mot utilisées par le microservice Word. 
