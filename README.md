@@ -12,6 +12,7 @@ les profiles valables sont:
 * adjective
 * article
 * noun
+
 Pour un bon fonctionnement, il faut exécuter les microservices dans l'ordre suivant :
 1. config-server
 2. Eureka-server
