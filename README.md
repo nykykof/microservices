@@ -18,7 +18,7 @@ Pour un bon fonctionnement, il faut exécuter les microservices dans l'ordre sui
 # virtualisation
 
 # Configuration
-Dans chaque projet se trouve un fichier bootstrap.yml sous le repertoire **src/main/resources/**. Dans ce fichier ce trouve les paramètres de configuration:
+Dans chaque projet se trouve un fichier `bootstrap.yml` sous le repertoire **src/main/resources/**. Dans ce fichier ce trouve les paramètres de configuration:
 * le nom de l'application tel que Eureka-server le voit
 * le port sur lequel le service tourne
 * l'adresse à laquelle se trouve le config-server  
