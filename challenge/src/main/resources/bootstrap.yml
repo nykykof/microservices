@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:8001
+      
+  application:
+    name: challenge
+  profiles:
+    active: challenge
+    
+server:
+  port: 8030
