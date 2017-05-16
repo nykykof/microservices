@@ -6,4 +6,4 @@ spring:
     name: api-gateway
   cloud:
     config:
-      uri: http://127.0.0.1:8001  
+      uri: http://172.18.100.11:8001  
