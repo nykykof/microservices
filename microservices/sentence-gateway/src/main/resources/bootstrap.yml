@@ -1,0 +1,10 @@
+---
+server:
+  port: 8020
+  
+spring:
+  application:
+    name: sentence-gateway   
+  cloud:
+    config:
+      uri: http://config-server:8001
