@@ -26,11 +26,11 @@
 <script type="text/javascript">
 	
 	//	TODO: Alter this prefix when instructed.
-	var prefix = "http://192.168.0.3:8020";
+	var prefix = "http://172.18.100.15:8020";
 
 	// Perform AJAX requests...
 	$.getJSON(prefix + "/sentence",   null, displaySentence)  .fail(displayErrorSentence);
-	$.getJSON("http://192.168.0.3:8030/md5/challenge",   null, displayChallenge)  .fail(displayErrorChallenge);
+	$.getJSON("http://172.18.100.16:8030/challenge/md5",   null, displayChallenge)  .fail(displayErrorChallenge);
 	
 	//	Handle Success:
 

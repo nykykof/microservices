@@ -3,8 +3,8 @@ services:
   api-gateway:
     build: ./api-gateway
     depends_on:
-      - config-server
-    command: ["./etc/api-gateway/wait-for-config-server.sh", "config-server:8001", "--","java","-jar","/etc/api-gateway/api-gateway-1.jar","FOREGROUND"]
+      - sentence-gateway
+    command: ["./etc/api-gateway/wait-for-config-server.sh", "sentence-gateway:8020", "--","java","-jar","/etc/api-gateway/api-gateway-1.jar","FOREGROUND"]
     ports: 
       - "8080:8080"
     networks:
@@ -34,20 +34,37 @@ services:
   #   networks:
   #     - front
 
-  # sentence-gateway:
-  #   build: ./sentence-gateway
-  #   networks:
-  #     - back
+  sentence-gateway:
+    build: ./sentence-gateway
+    depends_on:
+      - config-server
+    command: ["./etc/sentence-gateway/wait-for-config-server.sh", "config-server:8001", "--","java","-jar","/etc/sentence-gateway/sentence-gateway-1.jar","FOREGROUND"]
 
-  # word:
-  #   build: ./word
-  #   networks: 
-  #     - back
+    networks:
+      #- back
+      front:
+        ipv4_address: 172.18.100.15
 
-  # challenge:
-  #   build: ./challenge
-  #   networks: 
-  #    - back
+  word:
+    build: ./word
+    depends_on:
+      - config-server
+    command: ["./etc/word/wait-for-config-server.sh", "config-server:8001", "--","java","-jar","/etc/word/word-1.jar","--spring.profiles.active=subject","FOREGROUND"]
+
+    networks: 
+      #- back
+      - front
+
+  challenge:
+    build: ./challenge
+    depends_on:
+      - config-server
+    command: ["./etc/challenge/wait-for-config-server.sh", "config-server:8001", "--","java","-jar","/etc/challenge/challenge-1.jar","FOREGROUND"]
+
+    networks: 
+     #- back
+      front:
+        ipv4_address: 172.18.100.16
 
 networks:
   front:
@@ -63,5 +80,5 @@ networks:
   #   ipam:
   #     driver: default
   #     config:
-  #       - subnet: 172.19.0.0/16
-  #       - gatway: 172.19.0.1
+  #       - subnet: 172.19.100.0/16
+  #       - gateway: 172.19.100.1

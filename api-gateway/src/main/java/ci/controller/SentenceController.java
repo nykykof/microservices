@@ -20,7 +20,7 @@ public class SentenceController {
 	
 	@Autowired SentenceService sentenceService;
 	
-	@RequestMapping("/sentence")
+	@RequestMapping("/api/sentence")
 	public @ResponseBody SentenceDao sentence(){
 		
 		return sentenceService.getSentence();

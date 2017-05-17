@@ -10,11 +10,12 @@ import rm.dao.Challenge;
 
 @RestController
 @RequestMapping("/challenge")
-@CrossOrigin
+@CrossOrigin("*")
 public class Md5ChallengeController {
 
-	@Value("${md5.length}") int length;
+	@Value("${md5.length}") int length; //parameter defined in application.yml on github repo
 	@RequestMapping(value="/md5", produces={"application/json"})
+	
 	public @ResponseBody Challenge getChallenge(){
 		
 		String challenge = "";
