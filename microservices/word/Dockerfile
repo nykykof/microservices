@@ -1,10 +1,12 @@
-FROM java:8
+FROM maven:3.5-jdk-8
 
 RUN mkdir /etc/word
-COPY word-1.jar /etc/word
+
+COPY app /app
 COPY wait-for-config-server.sh /etc/word
 RUN chmod u+x /etc/word/wait-for-config-server.sh
 
-#run the app
-#ENTRYPOINT ["java","-jar","/etc/word/word-1.jar","FOREGROUND"]
+WORKDIR /app
+
+RUN mvn install -D maven.test.skip
 

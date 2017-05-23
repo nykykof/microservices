@@ -1,10 +1,9 @@
-FROM java:8
+FROM maven:3.5-jdk-8
 
 RUN mkdir /etc/eureka
-ADD eureka-1.jar /etc/eureka
+
+COPY app /app
 #EXPOSE 8010
 
-#run the app
-ENTRYPOINT ["java","-jar","/etc/eureka/eureka-1.jar","FOREGROUND"]
-
-
+WORKDIR /app
+RUN mvn install

@@ -1,10 +1,11 @@
-FROM java:8
+FROM maven:3.5-jdk-8
 
 RUN mkdir /etc/sentence-gateway
-COPY sentence-gateway-1.jar /etc/sentence-gateway
+
+COPY app /app
 COPY wait-for-config-server.sh /etc/sentence-gateway
 RUN chmod u+x /etc/sentence-gateway/wait-for-config-server.sh
 
-#run the app
-#ENTRYPOINT ["java","-jar","/etc/sentence-gateway/sentence-gateway-1.jar","FOREGROUND"]
+WORKDIR /app
 
+RUN mvn install -D maven.test.skip

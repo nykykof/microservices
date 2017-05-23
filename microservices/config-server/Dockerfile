@@ -1,9 +1,10 @@
-FROM java:8
+FROM maven:3.5-jdk-8
 
 RUN mkdir /etc/config-server
-COPY config-server-1.jar /etc/config-server
+
+COPY app /app
 #EXPOSE 8001
 
-#run the app
-ENTRYPOINT ["java","-jar","/etc/config-server/config-server-1.jar","FOREGROUND"]
+WORKDIR /app
 
+RUN mvn install

@@ -2,5 +2,5 @@ language: java
 sudo: false # faster builds
 
 script: 
-    - cd config-server
+    - cd microservices/config-server
     - mvn clean packages

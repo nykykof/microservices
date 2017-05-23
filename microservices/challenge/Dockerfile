@@ -1,10 +1,11 @@
-FROM java:8
+FROM maven:3.5-jdk-8
 
 RUN mkdir /etc/challenge
-COPY  challenge-1.jar /etc/challenge
+
+COPY app /app
 COPY wait-for-config-server.sh /etc/challenge
 RUN chmod u+x /etc/challenge/wait-for-config-server.sh
 
-#run the app
-#ENTRYPOINT ["java","-jar","/etc/challenge/challenge-1.jar","FOREGROUND"]
+WORKDIR /app
 
+RUN mvn install -D maven.test.skip
