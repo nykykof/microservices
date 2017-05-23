@@ -3,4 +3,4 @@ sudo: false # faster builds
 
 script: 
     - cd microservices/config-server/app
-    - mvn clean packages
+    - mvn clean package
