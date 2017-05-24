@@ -4,7 +4,7 @@ services:
     build: ./microservices/api-gateway
     depends_on:
       - sentence-gateway
-    command: ["./etc/api-gateway/wait-for-config-server.sh", "sentence-gateway:8020", "--","mvn","spring-boot:run","FOREGROUND"]
+    command: ["./wait-for-config-server.sh", "sentence-gateway:8020", "--","mvn","spring-boot:run"]
     ports: 
       - "8080:8080"
     networks:
@@ -15,12 +15,14 @@ services:
     # ports:
     #   - "8010:8010"
     build: ./microservices/eureka
+    command: ["mvn","spring-boot:run"]
     networks:
       front:
         ipv4_address: 172.18.100.10 
 
   config-server:
     build: ./microservices/config-server
+    command: ["mvn","spring-boot:run"]
     # ports:
     #   - "8001:8001"
     networks:
@@ -38,7 +40,7 @@ services:
     build: ./microservices/sentence-gateway
     depends_on:
       - config-server
-    command: ["./etc/sentence-gateway/wait-for-config-server.sh", "config-server:8001", "--","mvn","spring-boot:run","FOREGROUND"]
+    command: ["./wait-for-config-server.sh", "config-server:8001", "--","mvn","spring-boot:run"]
     networks:
       #- back
       front:
@@ -48,8 +50,8 @@ services:
     build: ./microservices/word
     depends_on:
       - config-server
-    command: ["./etc/word/wait-for-config-server.sh", "config-server:8001", "--","java","-jar","/etc/word/word-1.jar","--spring.profiles.active=subject","FOREGROUND"]
-
+    #command: ["./wait-for-config-server.sh", "config-server:8001", "--","java","-jar","/etc/word/word-1.jar","--spring.profiles.active=subject"]
+    command: ["./wait-for-config-server.sh", "config-server:8001", "--","mvn","spring-boot:run","-Drun.jvmArguments=\"-Dspring.profiles.active=verb\""]
     networks: 
       #- back
       - front
@@ -58,7 +60,7 @@ services:
     build: ./microservices/challenge
     depends_on:
       - config-server
-    command: ["./etc/challenge/wait-for-config-server.sh", "config-server:8001", "--","java","-jar","mvn","spring-boot:run","FOREGROUND"]
+    command: ["./wait-for-config-server.sh", "config-server:8001", "--","mvn","spring-boot:run"]
 
     networks: 
      #- back
