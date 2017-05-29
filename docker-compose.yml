@@ -11,7 +11,7 @@ services:
       front:
         ipv4_address: 172.18.100.12
 
-  eureka:
+  discovery-server:
     # ports:
     #   - "8010:8010"
     build: ./microservices/eureka
